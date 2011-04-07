@@ -1,0 +1,28 @@
+This is one of the projects used at @dpp's Lift course held at Skillsmatter, London, March 2011.
+
+The code as it was at the end of the class, and as such probably isn't going to make a lot of sense but might contain something someone can find useful.
+
+From my notes:
+ * This was a demonstration of wizard.
+ * Main files touched: snippet/Wizard.scala
+ * See: http://stable.simply.liftweb.net/#toc-Section-4.7
+
+ Decoding my hand-written notes:
+  * wizard is made up of screens
+  * wizard has nothing to do with rendering itself (which makes it very testable)
+  * the field to HTML details are handled via a Manifest mapping at screen level, then wizard level, and finally Lift defaults.
+  * The URL query param changes on screen change, so back button does the right thing.  Wizard is maintinaing a tree of the path the user has taken.
+  * Screens are reconstructed on next/previous navigation (http status code "See other" used to avoid re-post problems)
+  * confirm screen = true give you a replay of the values collected automatically
+  * Previous behaviour is like back button behaviour (i.e., it's not a submit of values changed on the page)
+  * Wizard is best for static forms, including those with different paths, i.e., not for adding and removing fields dynamically.
+  * Field construction is by-name.
+  * ajax=true on wizard tag moves from sbumitting pages to doing an ajax post and rerender.
+  * Each screen that was visited has an optional finish() call exectued when the wizard finally finishes.  
+
+
+Run with:
+
+  $ sbt
+  > update
+  > jetty-run
